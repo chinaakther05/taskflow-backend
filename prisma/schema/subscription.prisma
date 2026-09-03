@@ -1,0 +1,23 @@
+model Subscription {
+  id       String           @id @default(uuid())
+  plan     SubscriptionPlan @default(FREE)
+  isActive Boolean          @default(true)
+
+  maxProjects Int @default(3)
+  maxMembers  Int @default(5)
+
+  startDate DateTime  @default(now())
+  endDate   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  organizationId String       @unique
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  payments Payment[]
+
+  @@index([organizationId])
+  @@index([plan])
+  @@map("subscriptions")
+}

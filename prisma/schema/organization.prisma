@@ -1,0 +1,20 @@
+model Organization {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  logo        String?
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  payments      Payment[]
+  members       OrganizationMember[]
+  projects      Project[]
+  subscription  Subscription?
+  activities    Activity[]
+  notifications Notification[]
+
+  @@map("organizations")
+}

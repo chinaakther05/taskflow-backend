@@ -1,0 +1,61 @@
+enum Role {
+  ADMIN
+  PROJECT_MANAGER
+  MEMBER
+}
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+  COMPLETED
+}
+
+enum TaskStatus {
+  PENDING_ACCEPTANCE
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum MemberPermission {
+  VIEW_ONLY
+  EDIT
+  FULL
+}
+
+enum SubscriptionPlan {
+  FREE
+  PRO
+  BUSINESS
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+enum PaymentGateway {
+  BKASH
+  STRIPE
+  SSLCOMMERZ
+}
+
+enum NotificationType {
+  TASK_ASSIGNED
+  TASK_STATUS_CHANGED
+  TASK_DEADLINE_NEAR
+  COMMENT_ADDED
+  MEMBER_ADDED
+  PROJECT_CREATED
+  PAYMENT_SUCCESS
+}

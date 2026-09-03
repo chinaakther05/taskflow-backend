@@ -1,0 +1,18 @@
+model TimeLog {
+  id        String    @id @default(uuid())
+  startTime DateTime
+  endTime   DateTime?
+  duration  Int?
+  note      String?
+  createdAt DateTime  @default(now())
+
+  taskId String
+  task   Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([userId])
+  @@map("time_logs")
+}
