@@ -124,6 +124,7 @@ const loginUser = async (payload: ILoginUserPayload) => {
   );
 
   // Remove password from response
+  
   const { password: _, ...userWithoutPassword } = user;
 
   return {
