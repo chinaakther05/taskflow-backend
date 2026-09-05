@@ -7,6 +7,7 @@ import errorHandler from "./middlewares/errorHandler.middleware";
 import auth from "./middlewares/auth.middleware";
 import { organizationRoutes } from "./modules/organization/organization.routes";
 import { organizationMemberRoutes } from "./modules/organizationMember/organizationMember.routes";
+import roleMiddleware from "./middlewares/role.middleware";
 
 
 const app : Application = express();
@@ -24,6 +25,22 @@ app.use(cookieParser());
 app.get('/', (req : Request, res : Response) => {
     res.send('Welcome to TaskFlow API');
 })
+
+app.get(
+  "/api/rbac-test",
+  auth,
+  roleMiddleware("ADMIN"),
+  (req, res) => {
+    res.status(200).json({
+      success: true,
+      message: "RBAC test successful",
+      data: {
+        user: req.user,
+        role: "ADMIN",
+      },
+    });
+  },
+);
 
 
 
