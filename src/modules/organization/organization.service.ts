@@ -9,6 +9,12 @@ interface ICreateOrganizationPayload {
   description?: string;
 }
 
+interface IUpdateOrganizationPayload {
+  name?: string;
+  logo?: string;
+  description?: string;
+}
+
 const createOrganization = async (
   payload: ICreateOrganizationPayload,
   userId: string
@@ -96,8 +102,48 @@ const getOrganizationById = async (organizationId: string, userId: string) => {
   return organization;
 };
 
+const updateOrganization = async (
+  organizationId: string,
+  payload: IUpdateOrganizationPayload
+) => {
+  const organization = await prisma.organization.findUnique({
+    where: { id: organizationId },
+  });
+
+  if (!organization) {
+    throw new ApiError(404, "Organization not found");
+  }
+
+  const updated = await prisma.organization.update({
+    where: { id: organizationId },
+    data: payload,
+  });
+
+  return updated;
+};
+
+const deleteOrganization = async (organizationId: string) => {
+  const organization = await prisma.organization.findUnique({
+    where: { id: organizationId },
+  });
+
+  if (!organization) {
+    throw new ApiError(404, "Organization not found");
+  }
+
+  // Soft delete - পুরোপুরি মুছে ফেলা হচ্ছে না, শুধু inactive করা হচ্ছে
+  const deleted = await prisma.organization.update({
+    where: { id: organizationId },
+    data: { isActive: false },
+  });
+
+  return deleted;
+};
+
 export const OrganizationService = {
   createOrganization,
   getMyOrganizations,
   getOrganizationById,
+  updateOrganization,
+  deleteOrganization,
 };

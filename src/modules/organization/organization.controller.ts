@@ -46,8 +46,36 @@ const getOrganizationById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateOrganization = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
+
+  const result = await OrganizationService.updateOrganization(id, req.body);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Organization updated successfully",
+    data: result,
+  });
+});
+
+const deleteOrganization = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
+
+  const result = await OrganizationService.deleteOrganization(id);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Organization deleted successfully",
+    data: result,
+  });
+});
+
 export const OrganizationController = {
   createOrganization,
   getMyOrganizations,
   getOrganizationById,
+  updateOrganization,
+  deleteOrganization,
 };

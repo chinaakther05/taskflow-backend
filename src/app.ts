@@ -8,6 +8,7 @@ import auth from "./middlewares/auth.middleware";
 import { organizationRoutes } from "./modules/organization/organization.routes";
 import { organizationMemberRoutes } from "./modules/organizationMember/organizationMember.routes";
 import roleMiddleware from "./middlewares/role.middleware";
+import { projectRouters } from "./modules/project/project.routes";
 
 
 const app : Application = express();
@@ -47,6 +48,7 @@ app.get(
 app.use("/api/auth", authRoutes);
 app.use("/api/organizations", organizationRoutes);
 app.use("/api/organization-members", organizationMemberRoutes);
+app.use("/api/projects", projectRouters);
 
 
 app.get("/api/protected", auth, (req, res) => {

@@ -18,6 +18,23 @@ const createOrganizationSchema = z.object({
   description: z.string().optional(),
 });
 
+
+const updateOrganizationSchema = z.object({
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .optional(),
+
+  logo: z.string().url("Logo must be a valid URL").optional(),
+
+  description: z.string().optional(),
+
+  isActive: z.boolean().optional(),
+});
+
 export const OrganizationValidation = {
   createOrganizationSchema,
+  updateOrganizationSchema, 
 };
+
+
