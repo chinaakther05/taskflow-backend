@@ -11,6 +11,7 @@ import roleMiddleware from "./middlewares/role.middleware";
 import { projectRouters } from "./modules/project/project.routes";
 import { TaskRoutes } from "./modules/task/task.routes";
 import { CommentRoutes } from "./modules/comment/comment.routes";
+import { TimeLogRoutes } from "./modules/timeLog/timeLog.routes";
 
 
 const app : Application = express();
@@ -53,6 +54,7 @@ app.use("/api/organization-members", organizationMemberRoutes);
 app.use("/api/projects", projectRouters);
 app.use("/api/tasks", TaskRoutes);
 app.use("/api/comments", CommentRoutes);
+app.use("/api/time-logs", TimeLogRoutes);
 
 
 app.get("/api/protected", auth, (req, res) => {
