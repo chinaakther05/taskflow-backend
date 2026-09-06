@@ -72,10 +72,63 @@ const deleteOrganization = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+// Invite Member
+const inviteMember = catchAsync(
+  async (req: Request, res: Response) => {
+    const organizationId = req.params.organizationId?.toString();
+
+    if (!organizationId) {
+      throw new Error("Organization ID is required");
+    }
+
+    const result = await OrganizationService.inviteMember(
+      organizationId,
+      req.body,
+    );
+
+    sendResponse(res, {
+      statusCode: 201,
+      success: true,
+      message: "Member invited successfully",
+      data: result,
+    });
+  },
+);
+
+// Remove Member
+const removeMember = catchAsync(
+  async (req: Request, res: Response) => {
+    const organizationId = req.params.organizationId?.toString();
+    const memberUserId = req.params.memberUserId?.toString();
+
+    if (!organizationId) {
+      throw new Error("Organization ID is required");
+    }
+
+    if (!memberUserId) {
+      throw new Error("Member user ID is required");
+    }
+
+    const result = await OrganizationService.removeMember(
+      organizationId,
+      memberUserId,
+    );
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Member removed successfully",
+      data: result,
+    });
+  },
+);
+
 export const OrganizationController = {
   createOrganization,
   getMyOrganizations,
   getOrganizationById,
   updateOrganization,
   deleteOrganization,
+  inviteMember,
+  removeMember,
 };

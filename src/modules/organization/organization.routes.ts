@@ -45,4 +45,21 @@ router.delete(
 );
 
 
+router.post(
+  "/:organizationId/invite",
+  auth,
+  validateRequest(OrganizationValidation.inviteMemberSchema),
+  roleMiddleware("ADMIN", "PROJECT_MANAGER"),
+  OrganizationController.inviteMember,
+);
+
+// Remove Member
+router.delete(
+  "/:organizationId/members/:memberUserId",
+  auth,
+  roleMiddleware("ADMIN", "PROJECT_MANAGER"),
+  OrganizationController.removeMember,
+);
+
+
 export const organizationRoutes = router;

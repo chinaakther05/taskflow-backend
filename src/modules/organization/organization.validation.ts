@@ -32,9 +32,24 @@ const updateOrganizationSchema = z.object({
   isActive: z.boolean().optional(),
 });
 
+const inviteMemberSchema = z.object({
+  email: z
+    .string({ error: "Email is required" })
+    .trim()
+    .toLowerCase()
+    .email("Invalid email format"),
+
+  role: z
+    .enum(["ADMIN", "PROJECT_MANAGER", "MEMBER"])
+    .optional(),
+});
+
 export const OrganizationValidation = {
   createOrganizationSchema,
   updateOrganizationSchema, 
+  inviteMemberSchema,
 };
+
+
 
 

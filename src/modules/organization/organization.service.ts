@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma";
 import ApiError from "../../utils/ApiError";
+import { IInviteMemberPayload } from "./organization.interface";
 
 
 interface ICreateOrganizationPayload {
@@ -140,10 +141,102 @@ const deleteOrganization = async (organizationId: string) => {
   return deleted;
 };
 
+const inviteMember = async (
+  organizationId: string,
+  payload: IInviteMemberPayload,
+) => {
+  const { email, role } = payload;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email.trim().toLowerCase(),
+    },
+  });
+
+  if (!user) {
+    throw new ApiError(
+      404,
+      "No user found with this email. Ask them to register first.",
+    );
+  }
+
+  const existingMembership =
+    await prisma.organizationMember.findUnique({
+      where: {
+        userId_organizationId: {
+          userId: user.id,
+          organizationId,
+        },
+      },
+    });
+
+  if (existingMembership) {
+    throw new ApiError(
+      400,
+      "This user is already a member of this organization",
+    );
+  }
+
+  const membership =
+    await prisma.organizationMember.create({
+      data: {
+        organizationId,
+        userId: user.id,
+        role: role || "MEMBER",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+  return membership;
+};
+
+const removeMember = async (
+  organizationId: string,
+  memberUserId: string,
+) => {
+  const membership =
+    await prisma.organizationMember.findUnique({
+      where: {
+        userId_organizationId: {
+          userId: memberUserId,
+          organizationId,
+        },
+      },
+    });
+
+  if (!membership) {
+    throw new ApiError(
+      404,
+      "Member not found in this organization",
+    );
+  }
+
+  await prisma.organizationMember.delete({
+    where: {
+      id: membership.id,
+    },
+  });
+
+  return {
+    message: "Member removed successfully",
+  };
+};
+
 export const OrganizationService = {
   createOrganization,
   getMyOrganizations,
   getOrganizationById,
   updateOrganization,
   deleteOrganization,
+  inviteMember,
+  removeMember,
 };
