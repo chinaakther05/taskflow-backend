@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "target": "es2024",
     "types": ["node"],
     "sourceMap": true,
@@ -16,6 +15,7 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
+
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "prisma"]
+  "exclude": ["node_modules", "dist"]
 }
