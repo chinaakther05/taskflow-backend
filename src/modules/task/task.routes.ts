@@ -8,7 +8,7 @@ import { TaskValidation } from "./task.validation";
 
 const router = Router();
 
-// Create Task
+
 router.post(
   "/",
   auth,
@@ -16,21 +16,21 @@ router.post(
   TaskController.createTask,
 );
 
-// Get Tasks By Project
+
 router.get(
   "/project/:projectId",
   auth,
   TaskController.getTasksByProject,
 );
 
-// Get Task By ID
+
 router.get(
   "/:taskId",
   auth,
   TaskController.getTaskById,
 );
 
-// Update Task
+
 router.patch(
   "/:taskId",
   auth,
@@ -38,7 +38,7 @@ router.patch(
   TaskController.updateTask,
 );
 
-// Delete Task
+
 router.delete(
   "/:taskId",
   auth,

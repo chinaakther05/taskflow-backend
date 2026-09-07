@@ -17,7 +17,7 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.loginUser(req.body);
 
-  // Refresh token কে httpOnly cookie তে রাখা হচ্ছে (frontend থেকে সরাসরি access করা যাবে না, security ভালো)
+  // Refresh token
   res.cookie("refreshToken", result.refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

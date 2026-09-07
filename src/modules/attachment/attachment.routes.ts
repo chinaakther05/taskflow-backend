@@ -6,29 +6,13 @@ import { AttachmentValidation } from "./attachment.validation";
 
 const router = Router();
 
-router.post(
-  "/",
-  auth,
-  validateRequest(AttachmentValidation.createAttachmentSchema),
-  AttachmentController.createAttachment,
+router.post("/",auth,validateRequest(AttachmentValidation.createAttachmentSchema),AttachmentController.createAttachment,
 );
 
-router.get(
-  "/task/:taskId",
-  auth,
-  AttachmentController.getAttachmentsByTask,
-);
+router.get("/task/:taskId",auth, AttachmentController.getAttachmentsByTask,);
 
-router.get(
-  "/:attachmentId",
-  auth,
-  AttachmentController.getAttachmentById,
-);
+router.get("/:attachmentId",auth,AttachmentController.getAttachmentById,);
 
-router.delete(
-  "/:attachmentId",
-  auth,
-  AttachmentController.deleteAttachment,
-);
+router.delete("/:attachmentId",auth,AttachmentController.deleteAttachment,);
 
 export const AttachmentRoutes = router;

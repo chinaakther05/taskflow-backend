@@ -155,7 +155,7 @@ const confirmPaymentIntoDB = async (
     throw new ApiError(404, "Payment not found");
   }
 
-  // Webhook retry করলে error না দিয়ে success response দিতে হবে
+  
   if (payment.status === "SUCCESS") {
     return payment;
   }

@@ -9,7 +9,7 @@ import { ProjectValidation } from "./project.validation";
 
 const router = Router();
 
-// Create Project
+
 router.post(
   "/",
   auth,
@@ -31,7 +31,7 @@ router.get(
   ProjectController.getProjectById,
 );
 
-// Update Project
+
 router.patch(
   "/:projectId",
   auth,
@@ -39,7 +39,7 @@ router.patch(
   ProjectController.updateProject,
 );
 
-// Delete / Archive Project
+
 router.delete(
   "/:projectId",
   auth,

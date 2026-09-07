@@ -6,29 +6,15 @@ import { ActivityValidation } from "./activity.validation";
 
 const router = Router();
 
-router.post(
-  "/",
-  auth,
-  validateRequest(ActivityValidation.createActivitySchema),
-  ActivityController.createActivity,
+router.post("/",auth,validateRequest(ActivityValidation.createActivitySchema),ActivityController.createActivity,
 );
 
-router.get(
-  "/organization/:organizationId",
-  auth,
-  ActivityController.getActivitiesByOrganization,
+router.get("/organization/:organizationId", auth,ActivityController.getActivitiesByOrganization,
 );
 
-router.get(
-  "/task/:taskId",
-  auth,
-  ActivityController.getActivitiesByTask,
-);
+router.get("/task/:taskId",auth, ActivityController.getActivitiesByTask,);
 
-router.get(
-  "/:activityId",
-  auth,
-  ActivityController.getActivityById,
+router.get("/:activityId",auth,ActivityController.getActivityById,
 );
 
 export const ActivityRoutes = router;

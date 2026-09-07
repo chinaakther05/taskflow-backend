@@ -6,7 +6,7 @@ import { SubscriptionValidation } from "./subscription.validation";
 
 const router = Router();
 
-// Create Subscription
+
 router.post(
   "/",
   auth,
@@ -23,7 +23,7 @@ router.get(
   SubscriptionController.getSubscription,
 );
 
-// Update Subscription
+
 router.patch(
   "/:subscriptionId",
   auth,
@@ -33,7 +33,7 @@ router.patch(
   SubscriptionController.updateSubscription,
 );
 
-// Cancel Subscription
+
 router.patch(
   "/:subscriptionId/cancel",
   auth,

@@ -3,7 +3,7 @@ import { prisma } from "../../lib/prisma";
 import ApiError from "../../utils/ApiError";
 import { ICreateProjectPayload, IUpdateProjectPayload } from "./project.interface";
 
-// 🔧 Helper: Organization membership + role check - একবার লিখে বারবার ব্যবহার হবে
+
 const ensureOrgAccess = async (
   userId: string,
   organizationId: string,
@@ -24,7 +24,7 @@ const ensureOrgAccess = async (
   return membership;
 };
 
-// 🔧 Helper: Project খুঁজে বের করা, না পেলে 404
+
 const findProjectOrThrow = async (projectId: string) => {
   const project = await prisma.project.findUnique({ where: { id: projectId } });
 

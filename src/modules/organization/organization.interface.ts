@@ -15,3 +15,6 @@ export interface IInviteMemberPayload {
   email: string;
   role?: "ADMIN" | "PROJECT_MANAGER" | "MEMBER";
 }
+
+
+

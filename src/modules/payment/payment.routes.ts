@@ -7,7 +7,7 @@ import validateRequest from "../../middlewares/validate.middleware";
 
 const router = Router();
 
-// Create Payment
+
 router.post(
   "/",
   auth,
@@ -15,7 +15,7 @@ router.post(
   PaymentController.createPayment,
 );
 
-// Confirm Payment
+
 router.patch(
   "/confirm/:transactionId",
   auth,
@@ -24,14 +24,14 @@ router.patch(
 
 
 
-// Get My Payments
+
 router.get(
   "/my-payments",
   auth,
   PaymentController.getMyPayments,
 );
 
-// Get Payment By ID
+
 router.get(
   "/:paymentId",
   auth,

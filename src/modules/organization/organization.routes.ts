@@ -9,9 +9,8 @@ import roleMiddleware from "../../middlewares/role.middleware";
 
 const router = Router();
 
-router.post(
-  "/",
-  auth,
+router.post("/",
+auth,
   validateRequest(OrganizationValidation.createOrganizationSchema),
   OrganizationController.createOrganization,
 );
@@ -32,7 +31,7 @@ router.get(
 router.patch(
   "/:id",
   auth,
-  roleMiddleware("ADMIN"), // ✅ checkOrgRole থেকে roleMiddleware তে বদলানো হলো
+  roleMiddleware("ADMIN"), 
   validateRequest(OrganizationValidation.updateOrganizationSchema),
   OrganizationController.updateOrganization
 );
@@ -40,7 +39,7 @@ router.patch(
 router.delete(
   "/:id",
   auth,
-  roleMiddleware("ADMIN"), // ✅ এখানেও
+  roleMiddleware("ADMIN"), 
   OrganizationController.deleteOrganization
 );
 

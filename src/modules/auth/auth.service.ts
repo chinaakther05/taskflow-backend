@@ -8,21 +8,9 @@ import config from "../../config";
 import { prisma } from "../../lib/prisma";
 
 import { jwtUtils } from "../../utils/jwt";
+import { IGoogleLoginPayload, ILoginUserPayload, IRegisterUserPayload } from "./auth.interface";
 
-interface IRegisterUserPayload {
-  name: string;
-  email: string;
-  password: string;
-}
 
-interface ILoginUserPayload {
-  email: string;
-  password: string;
-}
-
-interface IGoogleLoginPayload {
-  idToken: string;
-}
 
 const googleClient = new OAuth2Client(config.google_client_id);
 

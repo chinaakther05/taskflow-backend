@@ -21,8 +21,8 @@ const roleMiddleware = (...allowedRoles: Role[]) => {
 
     const organizationId =
   req.body?.organizationId ||
-  req.params?.id ||              // ✅ "id" করে দাও
-  req.params?.organizationId ||  // (fallback হিসেবে থাকুক, ক্ষতি নেই)
+  req.params?.id ||              
+  req.params?.organizationId ||  
   req.headers["x-organization-id"];
 
       if (!organizationId || typeof organizationId !== "string") {

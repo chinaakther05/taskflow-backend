@@ -8,41 +8,18 @@ import { CommentValidation } from "./comment.validation";
 
 const router = Router();
 
-// Create Comment
-router.post(
-  "/",
-  auth,
-  validateRequest(CommentValidation.createCommentSchema),
-  CommentController.createComment,
-);
+
+router.post("/",auth,validateRequest(CommentValidation.createCommentSchema),CommentController.createComment,);
 
 // Get Comments By Task
-router.get(
-  "/task/:taskId",
-  auth,
-  CommentController.getCommentsByTask,
-);
+router.get("/task/:taskId",auth,CommentController.getCommentsByTask,);
 
 // Get Comment By ID
-router.get(
-  "/:commentId",
-  auth,
-  CommentController.getCommentById,
-);
+router.get("/:commentId",auth,CommentController.getCommentById,);
 
-// Update Comment
-router.patch(
-  "/:commentId",
-  auth,
-  validateRequest(CommentValidation.updateCommentSchema),
-  CommentController.updateComment,
-);
+router.patch("/:commentId",auth,validateRequest(CommentValidation.updateCommentSchema),CommentController.updateComment,);
 
-// Delete Comment
-router.delete(
-  "/:commentId",
-  auth,
-  CommentController.deleteComment,
-);
+
+router.delete("/:commentId",auth,CommentController.deleteComment,);
 
 export const CommentRoutes = router;

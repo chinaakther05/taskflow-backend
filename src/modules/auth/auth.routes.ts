@@ -5,22 +5,11 @@ import { AuthValidation } from "./auth.validation";
 
 const router = Router();
 
-router.post(
-  "/register",
-  validateRequest(AuthValidation.RegisterZodSchema),
-  AuthController.registerUser
-);
+router.post("/register",validateRequest(AuthValidation.RegisterZodSchema),AuthController.registerUser);
 
-router.post(
-  "/login",
-  validateRequest(AuthValidation.LoginZodSchema),
-  AuthController.loginUser
-);
+router.post("/login",validateRequest(AuthValidation.LoginZodSchema),AuthController.loginUser);
 
-router.post(
-  "/google",
-  AuthController.googleLogin,
-);
+router.post("/google",AuthController.googleLogin,);
 
 
 export const authRoutes = router;

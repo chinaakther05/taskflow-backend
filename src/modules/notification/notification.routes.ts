@@ -6,29 +6,12 @@ import { NotificationValidation } from "./notification.validation";
 
 const router = Router();
 
-router.post(
-  "/",
-  auth,
-  validateRequest(NotificationValidation.createNotificationSchema),
-  NotificationController.createNotification,
-);
+router.post("/",auth,validateRequest(NotificationValidation.createNotificationSchema),NotificationController.createNotification,);
 
-router.get(
-  "/my/:organizationId",
-  auth,
-  NotificationController.getMyNotifications,
-);
+router.get("/my/:organizationId",auth,NotificationController.getMyNotifications,);
 
-router.get(
-  "/:notificationId",
-  auth,
-  NotificationController.getNotificationById,
-);
+router.get("/:notificationId",auth,NotificationController.getNotificationById,);
 
-router.patch(
-  "/:notificationId/read",
-  auth,
-  NotificationController.markAsRead,
-);
+router.patch("/:notificationId/read", auth,NotificationController.markAsRead,);
 
 export const NotificationRoutes = router;
