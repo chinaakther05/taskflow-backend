@@ -429,17 +429,17 @@ npm run build
 Then start the production server:
 
 npm start
-🌐 API Base URL
-Local Development
-http://localhost:5000
-Production
-YOUR_PRODUCTION_BACKEND_URL
-📚 API Documentation
 
-Postman documentation:
 
-YOUR_POSTMAN_DOCUMENTATION_URL
-git clone YOUR_GITHUB_REPOSITORY_URL
+## 🔗 Live Links
+
+| Resource | Link |
+|----------|------|
+| ** git clone YOUR_GITHUB_REPOSITORY_URL=[https://github.com/chinaakther05/taskflow-backend]
+| **Live API** | [https://taskflow-backend-taupe.vercel.app/](https://taskflow-backend-taupe.vercel.app/) |
+| **API Documentation (Postman)** | [View on Google Drive]() |
+| **Demo Video** | [Watch on Loom]() |
+---
 
 Swagger/OpenAPI documentation can also be added here if available.
 
@@ -447,6 +447,7 @@ Swagger/OpenAPI documentation can also be added here if available.
 
 The backend can be deployed to platforms such as:
 
+vercel
 Render
 Railway
 Fly.io
@@ -455,63 +456,9 @@ Other Node.js hosting platforms
 
 Before deployment, configure all required environment variables in the hosting platform.
 
-🔧 Development Workflow
 
-Typical development workflow:
+       ↓
 
-1. Install dependencies
-       ↓
-2. Configure environment variables
-       ↓
-3. Configure PostgreSQL
-       ↓
-4. Run Prisma migration
-       ↓
-5. Generate Prisma Client
-       ↓
-6. Start development server
-       ↓
-7. Test APIs with Postman
-       ↓
-8. Build production version
-       ↓
-9. Deploy
-📌 Important Notes
-Do not commit .env.
-Do not expose JWT secrets.
-Do not expose Stripe secret keys.
-Do not expose database credentials.
-Use valid Google ID tokens for Google authentication.
-Use Stripe CLI for local webhook testing.
-Use Prisma migrations to manage database changes.
-📦 Main Modules
-Module	Description
-Auth	Registration, Login, Google Login
-Organization	Organization management
-Member	Organization member management
-Project	Project management
-Task	Task management
-Comment	Task comments
-Invitation	Member invitations
-Time Log	Time tracking
-Attachment	File attachments
-Activity	Activity tracking
-Notification	User notifications
-Subscription	Subscription plans
-Payment	Stripe payment integration
-🎯 Project Goals
-
-The main goals of TaskFlow are:
-
-Build a scalable SaaS backend
-Implement secure authentication
-Implement role-based authorization
-Provide complete project management APIs
-Support team collaboration
-Integrate subscription-based plans
-Integrate Stripe payments
-Follow modular backend architecture
-Provide production-ready REST APIs
 👨‍💻 Author
 China Akther
 
